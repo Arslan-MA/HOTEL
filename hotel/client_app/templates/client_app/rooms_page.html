@@ -1,0 +1,20 @@
+{% extends 'client_app/base.html' %}
+
+{% block content %}
+    <h1>Rooms Page</h1>
+    <div class="block">
+        {% for room in rooms %}
+            {% if room.reserved == False and room.is_hidden == False %}
+            <div class="element">
+                <img src="{{ room.image.url }}" alt="{{ room.title }}" class="img">
+                <p><b>Room numbers:</b><br>{{ room.title }}</p>
+                <p><b>Category:</b><br>{{ room.type }}</p>
+                <a href="{% url 'client_app:room_detail' room.slug %}"><button class="btn">Detail</button></a>
+                <a href="{% url 'client_app:likes_room' room.slug %}">
+                    <button class="btn">Likes {{ room.likes }}</button>
+                </a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

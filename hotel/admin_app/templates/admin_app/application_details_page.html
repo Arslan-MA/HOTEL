@@ -1,0 +1,27 @@
+{% extends 'admin_app/base.html' %}
+
+{% block content %}
+    <h1>Book Applications Page</h1>
+    <div class="block_detail">
+        <div class="element_detail">
+            <p><b>Client:</b><br>{{ application.client_id }}</p>
+            <p><b>Room numbers::</b><br>{{ application.room_id }}</p>
+            <p><b>Number of persons:</b><br>{{ application.number_persons }}</p>
+            <p><b>Services:</b><br>
+                {% for service in application.services.all %}
+                    {{ service.title }},<br>
+                {% endfor %}
+            </p>
+
+            <p><b>Arrival date:</b><br>{{ application.start_book }}</p>
+            <p><b>Date of departure:</b><br>{{ application.end_book }}</p>
+            <p><b>Total price:</b><br>{{ application.total_price }}</p>
+            <p><b>Approve_status:</b><br>{{ application.approve_status }}</p>
+            <form action="{% url 'admin_app:change_status' application.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="status" value="approve" class="btn">Approve</button>
+                <button type="submit" name="status" value="reject" class="btn">Reject</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

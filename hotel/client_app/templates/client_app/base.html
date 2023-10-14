@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'client_app/css/style.css' %}">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'client_app:start_page' %}"><button class="nav_btn">Home page</button></a>
+        <a href="{% url 'client_app:rooms' %}"><button class="nav_btn">Hotel rooms</button></a>
+        <a href="{% url 'client_app:application_page' %}"><button class="nav_btn">Application</button></a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

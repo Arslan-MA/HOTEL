@@ -1,0 +1,24 @@
+{% extends 'client_app/base.html' %}
+
+{% block content %}
+    <h1>Booking page</h1>
+    <div class="block_form">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label>First name</label><br>
+            <input type="text" name="first_name"><br>
+            <label>Last name</label><br>
+            <input type="text" name="last_name"><br>
+            <label>Middle name</label><br>
+            <input type="text" name="middle_name"><br>
+            <label>Email</label><br>
+            <input type="text" name="email"><br>
+            {% for value in form %}
+                <p>{{ value.label }}</p>
+                <p>{{ value }}</p>
+            {% endfor %}
+            <input type="submit" value="Save" class="btn">
+            <a href="{% url 'client_app:rooms' %}"><button class="btn" type="button">Cancel</button></a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'client_app/base.html' %}
+
+{% block content %}
+    <h1>Room Detail Page</h1>
+    <div class="block_detail">
+        <img src="{{ room.image.url }}" alt="{{ room.title }}" class="img_detail">
+        <p><b>Room numbers:</b><br>{{ room.title }}</p>
+        <p><b>Category:</b><br>{{ room.type }}</p>
+        <p><b>Likes:</b><br>{{ room.likes }}</p>
+        <a href="{% url 'client_app:booking_request' room.slug %}"><button class="btn">Book a room</button></a>
+    </div>
+    <div class="block_form">
+        <h3>Add comment</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                <p>{{ form.as_p }}</p>
+                <input type="submit" value="Save" class="btn">
+            </form>
+        </div>
+    <h1>Comments</h1>
+    {% for comment in comments %}
+        {% if room.comment == comment %}
+            <div class="element_comment">
+                <p><b>Author: </b>{{ comment.author }}</p>
+                <p>{{ comment.content }}</p>
+                <p><b>Date: </b>{{ comment.date }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

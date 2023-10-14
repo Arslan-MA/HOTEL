@@ -1,0 +1,21 @@
+{% extends 'admin_app/base.html' %}
+
+{% block content %}
+    <h1>Book Applications Page</h1>
+    <div class="block">
+        {% for application in applications %}
+            {% if not application.approve_status == True %}
+                <div class="element">
+                    <p><b>Client:</b><br>{{ application.client_id }}</p>
+                    <p><b>Room numbers::</b><br>{{ application.room_id }}</p>
+                    <p><b>Number of persons:</b><br>{{ application.number_persons }}</p>
+                    <p><b>Date of departure:</b><br>{{ application.end_book }}</p>
+                    <p><b>Total price:</b><br>{{ application.total_price }}</p>
+                    <a href="{% url 'admin_app:application_detail' application.pk %}">
+                        <button class="btn">Detail</button>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

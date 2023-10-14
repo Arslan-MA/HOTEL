@@ -1,0 +1,49 @@
+{% extends 'client_app/base.html' %}
+
+{% block content %}
+    <h1>Applications Page</h1>
+    <div class="block">
+        {% for application in applications %}
+            {% if application.approve_status == True %}
+                <div class="element status_true">
+                    <p><b>Client:</b><br>{{ application.client_id }}</p>
+                    <p><b>Room numbers::</b><br>{{ application.room_id }}</p>
+                    <p><b>Number of persons:</b><br>{{ application.number_persons }}</p>
+                    <p><b>Services:</b><br>{{ application.services }}</p>
+                    <p><b>Arrival date:</b><br>{{ application.start_book }}</p>
+                    <p><b>Date of departure:</b><br>{{ application.end_book }}</p>
+                    <p><b>Total price:</b><br>{{ application.total_price }}</p>
+                    <a href="{% url 'client_app:cancel_request' application.pk %}">
+                        <button class="btn">Cancel request</button>
+                    </a>
+                </div>
+            {% elif application.approve_status == False %}
+                <div class="element status_false">
+                    <p><b>Client:</b><br>{{ application.client_id }}</p>
+                    <p><b>Room numbers::</b><br>{{ application.room_id }}</p>
+                    <p><b>Number of persons:</b><br>{{ application.number_persons }}</p>
+                    <p><b>Services:</b><br>{{ application.services }}</p>
+                    <p><b>Arrival date:</b><br>{{ application.start_book }}</p>
+                    <p><b>Date of departure:</b><br>{{ application.end_book }}</p>
+                    <p><b>Total price:</b><br>{{ application.total_price }}</p>
+                    <a href="{% url 'client_app:cancel_request' application.pk %}">
+                        <button class="btn">Cancel request</button>
+                    </a>
+                </div>
+            {% elif application.approve_status == None %}
+                <div class="element">
+                    <p><b>Client:</b><br>{{ application.client_id }}</p>
+                    <p><b>Room numbers::</b><br>{{ application.room_id }}</p>
+                    <p><b>Number of persons:</b><br>{{ application.number_persons }}</p>
+                    <p><b>Services:</b><br>{{ application.services }}</p>
+                    <p><b>Arrival date:</b><br>{{ application.start_book }}</p>
+                    <p><b>Date of departure:</b><br>{{ application.end_book }}</p>
+                    <p><b>Total price:</b><br>{{ application.total_price }}</p>
+                    <a href="{% url 'client_app:cancel_request' application.pk %}">
+                        <button class="btn">Cancel request</button>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

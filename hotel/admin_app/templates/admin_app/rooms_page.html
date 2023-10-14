@@ -1,0 +1,23 @@
+{% extends 'admin_app/base.html' %}
+
+{% block content %}
+    <h1>Rooms Page</h1>
+    <div class="block">
+        {% for room in rooms %}
+            <div class="element">
+                <img src="{{ room.image.url }}" alt="{{ room.title }}" class="img">
+                <p><b>Room numbers:</b><br>{{ room.title }}</p>
+                <p><b>Category:</b><br>{{ room.type }}</p>
+                {% if room.is_hidden == False %}
+                    <a href="{% url 'admin_app:true' room.slug %}">
+                        <button type="button" class="btn">Hide</button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'admin_app:false' room.slug %}">
+                        <button type="button" class="btn">Open</button>
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

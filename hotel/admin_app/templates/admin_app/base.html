@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'admin_app/css/style.css' %}">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'admin_app:start_page' %}"><button class="nav_btn">Home page</button></a>
+        <a href="{% url 'admin_app:add_room' %}"><button class="nav_btn">Add a room</button></a>
+        <a href="{% url 'admin_app:rooms' %}"><button class="nav_btn">Hotel rooms</button></a>
+        <a href="{% url 'admin_app:book_applications' %}"><button class="nav_btn">Reservation requests</button></a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
